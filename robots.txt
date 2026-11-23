@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tk-coffee-log.github.io/coffee-map/sitemap.xml

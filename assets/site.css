@@ -1,0 +1,93 @@
+/* Coffee Map 神奈川 — 静的ページ共通スタイル（地図アプリと同じ色・書体） */
+:root{
+  --bg:#F2F3EF; --surface:#FFFFFF; --ink:#241A13; --muted:#6A645C; --line:#D9D9D1;
+  --roast:#6B3E26; --roast-soft:#EFE3D9; --leaf:#2E7A57; --warn:#A86A12;
+  --mine-fill:#F7EFDD; --mine-line:#C9A25A; --map:#ECEDE8;
+  --f-display:"Dela Gothic One","Zen Kaku Gothic New",system-ui,sans-serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#151311; --surface:#1F1B18; --ink:#EEE7DF; --muted:#A79D93; --line:#38322C;
+  --roast:#D59D70; --roast-soft:#3A2A20; --leaf:#62C493; --warn:#E0A84A;
+  --mine-fill:#30271A; --mine-line:#8E6C34; --map:#24272A; color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.8}
+a{color:var(--roast)}
+:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header / footer */
+.site-h{background:var(--surface);border-bottom:1px solid var(--line)}
+.site-h .wrap{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
+.logo{font-family:var(--f-display);font-size:20px;color:var(--roast);text-decoration:none;letter-spacing:.02em}
+.logo small{font-family:var(--f-body);font-size:12px;color:var(--muted);margin-left:6px;letter-spacing:0}
+.site-h nav{margin-left:auto;display:flex;gap:14px;font-size:14px}
+.site-h nav a{text-decoration:none}
+.site-f{margin-top:56px;border-top:1px solid var(--line);background:var(--surface);font-size:13px;color:var(--muted)}
+.site-f .wrap{padding-block:20px;display:flex;flex-direction:column;gap:6px}
+.site-f a{color:var(--muted)}
+
+/* page head */
+.crumbs{font-size:12.5px;color:var(--muted);padding-top:16px;display:flex;flex-wrap:wrap;gap:4px}
+.crumbs a{color:var(--muted)}
+.crumbs span[aria-hidden]{margin:0 2px}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,5.4vw,32px);line-height:1.35;margin:10px 0 0;text-wrap:balance;letter-spacing:.02em}
+h2{font-size:19px;margin:36px 0 10px;line-height:1.4}
+.lead{margin:12px 0 0;max-width:40em}
+.meta-line{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* chips / links */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
+.chips a{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:14px;text-decoration:none;color:var(--ink)}
+.chips a small{font-family:var(--f-mono);color:var(--muted);margin-left:4px}
+.cta{display:inline-block;margin-top:18px;background:var(--roast);color:var(--surface);text-decoration:none;font-weight:700;border-radius:10px;padding:10px 18px}
+
+/* map */
+.pmap{height:min(42vh,320px);margin-top:18px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--map);position:relative;z-index:0;isolation:isolate}
+.leaflet-container{background:var(--map);font-family:var(--f-body)}
+.leaflet-tile-pane{filter:grayscale(1) brightness(1.12) contrast(.8);opacity:.7}
+.leaflet-control-attribution{font-size:10px}
+.mk{width:22px;height:22px;border-radius:50%;background:#5E5750;border:2.5px solid #fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.4)}
+.mk.pick{background:#8A3E14;width:26px;height:26px}
+.mk.unv{background:#fff;border:2px dashed #5E5750;width:16px;height:16px}
+.mk.here{background:var(--leaf);width:30px;height:30px}
+
+/* shop cards */
+.cards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.card.unv{border-style:dashed}
+.card .nm{font-weight:700;font-size:16px}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;line-height:1.5;border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:2px;background:var(--mine-fill);border:1px solid var(--mine-line);color:var(--ink)}
+.card .sub{font-size:12.5px;color:var(--muted)}
+.card .memo{font-size:14px;line-height:1.65;margin-top:4px;color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;padding:0;list-style:none}
+.tags li{font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--muted)}
+.sect-note{font-size:13px;color:var(--muted);margin:-4px 0 10px}
+
+/* area cards (top) */
+.areas{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.areas a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;text-decoration:none;color:var(--ink);height:100%}
+.areas b{font-size:17px}
+.areas span{display:block;font-size:13px;color:var(--muted)}
+
+/* shop page */
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:16px}
+.box.mine{background:var(--mine-fill);border-color:var(--mine-line)}
+.box.unv{border-style:dashed}
+.box h2{margin:0 0 6px;font-size:15px}
+.flag{font-weight:700}
+.tk{font-family:var(--f-mono);font-size:13px;color:var(--warn)}
+dl.rows{margin:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
+dl.rows div{display:grid;grid-template-columns:76px 1fr;gap:10px}
+dl.rows dt{color:var(--muted)} dl.rows dd{margin:0;min-width:0}
+.fine{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.btn{flex:1;min-width:140px;text-align:center;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px;text-decoration:none;color:var(--ink);font-size:15px}
+.btn.primary{background:var(--roast);border-color:var(--roast);color:var(--surface);font-weight:700}
+.links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.links a{display:block;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--ink);background:var(--surface)}
+.links a.other{border-style:dashed}
+.links small{display:block;font-size:12px;color:var(--muted)}
