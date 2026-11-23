@@ -733,14 +733,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .mapwrap{position:relative;flex:none;height:min(36vh,300px);border-bottom:1px solid var(--line);background:var(--map)}
 #mapbox{position:absolute;inset:0}
-.leaflet-container{background:var(--map);font-family:var(--f-body)}
+.leaflet-container{background:#F4F4F1;font-family:var(--f-body)}
+.leaflet-tile-pane{filter:grayscale(1) brightness(1.12) contrast(.8);opacity:.7}
 .leaflet-control-attribution{font-size:10px}
 .mapnote{position:absolute;left:8px;right:8px;bottom:8px;z-index:500;margin:0;font-size:11.5px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
-.mk{width:24px;height:24px;border-radius:50%;background:var(--muted);color:#fff;border:2px solid #fff;display:grid;place-items:center;font:500 11px var(--f-mono);box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer;position:relative}
-.mk.pick{background:var(--roast);width:28px;height:28px;font-size:12px}
+.mk{width:26px;height:26px;border-radius:50%;background:#5E5750;color:#fff;border:2.5px solid #fff;display:grid;place-items:center;font:700 12px var(--f-mono);box-shadow:0 0 0 1.5px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.4);cursor:pointer;position:relative}
+.mk.pick{background:#8A3E14;width:32px;height:32px;font-size:13px}
 .mk.pick::after{content:"★";position:absolute;top:-7px;right:-7px;width:15px;height:15px;border-radius:50%;background:var(--mine-line);border:1.5px solid #fff;font-size:8px;line-height:12px;text-align:center;color:#fff}
-.mk.dot{width:14px;height:14px;font-size:0}
-.mk.dot.pick{width:18px;height:18px}
+.mk.dot{width:16px;height:16px;font-size:0}
+.mk.dot.pick{width:20px;height:20px}
 .mk.dot.pick::after{display:none}
 .mk.dim{opacity:.25}
 .num{margin-top:2px;width:22px;height:22px;border-radius:50%;background:var(--roast);color:var(--surface);font-family:var(--f-mono);font-size:11px;display:grid;place-items:center}
@@ -895,7 +896,7 @@ function updateMap(vis){
     if(s.lat==null) return;
     const i=all.length-1-ri, n=numbered()?i+1:"";
     const cls="mk"+(s.f?" pick":"")+(n?"":" dot")+(visIds.has(s.id)?"":" dim");
-    const size=s.f?(n?28:18):(n?24:14);
+    const size=s.f?(n?32:20):(n?26:16);
     const icon=L.divIcon({className:"",html:`<div class="${cls}">${n}</div>`,iconSize:[size,size],iconAnchor:[size/2,size/2]});
     L.marker([s.lat,s.lng],{icon,title:s.n,alt:s.n,zIndexOffset:s.f?1000:0}).on("click",()=>{location.hash="shop-"+s.id}).addTo(markerLayer);
   });
